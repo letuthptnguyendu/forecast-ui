@@ -4,6 +4,9 @@ const app = express()
 const request = require('request')
 const apiKey = '735a3f38f763d8228ddf1c0ad7f8a086'
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -32,6 +35,6 @@ app.post('/', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
+app.listen(server_port, server_ip_address, () => {
     console.log("......Runing......\n......Port: 3000..\n\n")
 })
